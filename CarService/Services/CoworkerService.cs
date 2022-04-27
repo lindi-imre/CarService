@@ -20,7 +20,8 @@ namespace CarService.Services
             return context.Coworkers.Include(cw => cw.Notebooks).Include(cw => cw.Phones).FirstOrDefault(cw => cw.Email == email);
         }
 
-        public void AddPhoneToCoworker(int id, Phone phone) {
+        public void AddPhoneToCoworker(int coworkerId, Phone phone) {
+            phone.CoworkerId = coworkerId;
             context.Phones.Add(phone);
             context.SaveChanges();
         }
